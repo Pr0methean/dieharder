@@ -53,7 +53,7 @@ void parsecl(int argc, char **argv)
     exit(1); /* count this as an error */
  }
 
- while ((c = getopt(argc,argv,"aBc:D:d:EeFf:g:hi:k:lL:m:n:oO:p:P:S:s:t:Vv:W:X:x:Y:y:Z:z:")) != EOF){
+ while ((c = getopt(argc,argv,"aBc:D:d:Ff:g:hi:k:lL:m:n:oO:p:P:S:s:t:Vv:W:X:x:Y:y:Z:z:")) != EOF){
    switch (c){
      case 'a':
        all = YES;
@@ -131,13 +131,6 @@ void parsecl(int argc, char **argv)
          dtest_num = dtest_tmp;
        }
        break;
-     case 'e':
-       exit_status_on_fail = 1;
-       break;
-     case 'E':
-       exit_status_on_weak = 1;
-       exit_status_on_fail = 1;
-       break;       
      case 'F':
        show_flags = 1;
        break;

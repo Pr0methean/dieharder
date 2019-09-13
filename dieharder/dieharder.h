@@ -38,15 +38,6 @@ char dtest_name[128];
 char generator_name[128];
 
 /*
- * Exit status codes. For backward-compatibility reasons, Dieharder
- * exits with status 0 by default even if the test fails; but this can
- * be overridden with the -E or -e flag.
- */
-int exit_status_on_pass = 0;
-int exit_status_on_weak = 0;
-int exit_status_on_fail = 0;
-
-/*
  * user_template sources are here, not in library
  */
 #include "user_template.h"

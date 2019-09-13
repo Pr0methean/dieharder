@@ -84,11 +84,10 @@ int main(int argc, char *argv[])
     * It is the UI's responsibility to ensure that run_test() is not called
     * without choosing a valid rng first!
     */
-   int exit_code;
    if(all){
-     exit_code = run_all_tests();
+     run_all_tests();
    } else {
-     exit_code = run_test();
+     run_test();
    }
 
  /*
@@ -100,6 +99,6 @@ int main(int argc, char *argv[])
   * if that might ever matter.  Exit code 0 clearly means "completed
   * normally".
   */
- exit(exit_code);
+ exit(0);
 
 }

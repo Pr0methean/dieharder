@@ -6,7 +6,7 @@
 
 #include "dieharder.h"
 
-int run_test()
+void run_test()
 {
 
  int i;
@@ -40,7 +40,7 @@ int run_test()
 
 int execute_test(int dtest_num)
 {
- int exit_status;
+
  int i;
  unsigned int need_more_p;
  double smallest_p;
@@ -97,17 +97,6 @@ int execute_test(int dtest_num)
 	   smallest_p = 0.5 - fabs(dieharder_test[i]->ks_pvalue - 0.5);
 	 }
    }
-   int result; // 0 = pass, 1 = weak, 2 = fail
-   if (smallest_p < Xfail) {
-     exit_status = exit_status_on_fail;
-     result = 2;
-   } else if (smallest_p < Xweak) {
-     exit_status = exit_status_on_weak;
-     result = 1;
-   } else {
-     exit_status = exit_status_on_pass;
-     result = 0;
-   }
    switch(Xtrategy){
      /*
       * This just runs std_test a single time, period, for good or ill.
@@ -127,7 +116,8 @@ int execute_test(int dtest_num)
       * has accumulated Xoff psamples, we are done.
       */
      case 1:
-       if(result != 1) need_more_p = NO;
+       if(smallest_p < Xfail) need_more_p = NO;
+       if(smallest_p >= Xweak) need_more_p = NO;
        if(dieharder_test[0]->psamples >= Xoff) need_more_p = NO;
        break;
      /*
@@ -137,7 +127,7 @@ int execute_test(int dtest_num)
       * If the test has accumulated Xoff psamples, we are done.
       */
      case 2:
-       if(result == 2) need_more_p = NO;
+       if(smallest_p < Xfail) need_more_p = NO;
        if(dieharder_test[0]->psamples >= Xoff) need_more_p = NO;
        break;
    }
@@ -145,7 +135,7 @@ int execute_test(int dtest_num)
 
  destroy_test(dh_test_types[dtest_num],dieharder_test);
 
- return(exit_status);
+ return(0);
 
 }
 
