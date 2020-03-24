@@ -19,6 +19,7 @@
 #define __USE_MISC 1
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdint.h>
 #include <unistd.h>
 
 /* This turns on M_PI in math.h */
